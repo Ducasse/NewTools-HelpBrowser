@@ -23,12 +23,12 @@ Class {
 MicrodownClassAPIHelpBuilder class >> buildHierarchicalHelpTopicFrom: aClass withSubclasses: aBoolean withMethods: anotherBoolean [
 	"Start building from the given class"
 	
-	^(self new)
-		addSubclasses: aBoolean;
-		addMethods: anotherBoolean;
-		rootToBuildFrom: aClass;
-		build;
-		topicToBuild 
+	^ self new
+			addSubclasses: aBoolean; 
+			addMethods: anotherBoolean;
+			rootToBuildFrom: aClass;
+			build;
+			topicToBuild 
 ]
 
 { #category : #accessing }
@@ -103,7 +103,7 @@ MicrodownClassAPIHelpBuilder >> buildMethodTopicsOn: topic for: aClass [
 { #category : #'private building' }
 MicrodownClassAPIHelpBuilder >> buildSubclassTopicFor: aSubclass [
 	 
-	^(self class new) 
+	^ self class new 
 			rootToBuildFrom: aSubclass;
 			addSubclasses: addSubclasses;
 			addMethods: addMethods;

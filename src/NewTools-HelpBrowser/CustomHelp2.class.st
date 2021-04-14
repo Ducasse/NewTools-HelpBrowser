@@ -4,28 +4,6 @@ Class {
 	#category : #'NewTools-HelpBrowser-tomoveBackInHelp'
 }
 
-{ #category : #editing }
-CustomHelp2 class >> accept: aSelector title: title contents: text [
-	"Accept edited text. Compile it into a HelpTopic"
-
-	| code |
-	code := String streamContents:[:s|
-		s nextPutAll: aSelector.
-		s crtab; nextPutAll: '"This method was automatically generated."'.
-		s crtab; nextPutAll: '<script: ''self edit: ', aSelector storeString,'''>'.
-		s crtab; nextPutAll: '^HelpTopic'.
-		s crtab: 2; nextPutAll: 'title: ', title storeString.
-		s crtab: 2; nextPutAll: 'contents: '.
-		s cr; nextPutAll: (String streamContents:[:c| c nextChunkPut: text]) storeString.
-		s nextPutAll:' readStream nextChunkText'.
-	].
-
-	self class 
-		compile: code
-		classified: ((self class organization categoryOfElement: aSelector) ifNil:['pages']).
-
-]
-
 { #category : #converting }
 CustomHelp2 class >> asHelpTopic [
 	"Convert the receiver to a help topic"
@@ -105,26 +83,6 @@ CustomHelp2 class >> doItScriptFrom: aString [
 	clipboard := self newColoredText: color withClipboardAction: aString.
 	run := self newColoredText: color withRunAction: aString.
 	^ text , '  ' asText , clipboard, '  ' asText, run
-]
-
-{ #category : #editing }
-CustomHelp2 class >> edit: aSelector [
-	"Open a Workspace on the text in the given selector.
-	When accepted, compile the result as a help topic."
-
-	| topic |
-	topic := (self respondsTo: aSelector) 
-			ifTrue:[self perform: aSelector]
-			ifFalse:[HelpTopic title: 'Untitled' contents: 'Please edit this topic. 
-To change the topic title, edit the window label.'].
-	UIManager default
-		edit: topic contents
-		label: topic title
-		accept: [:text| 
-			|newTitle|
-			newTitle := UIManager default request: 'Save with title ' initialAnswer: topic title.		 
-			newTitle ifNotNil: [ self accept: aSelector title: newTitle contents: text ]].
-
 ]
 
 { #category : #errors }
@@ -222,15 +180,6 @@ CustomHelp2 class >> subheading: aString [
 CustomHelp2 class >> systemIcon [ 
 
 	^self icon
-]
-
-{ #category : #formatting }
-CustomHelp2 class >> underlined: aString [
-	"Return Text object with underlined emphasis."
-	aString ifEmpty: [ self errorEmptyString ].
-	
-	^ aString asText addAttribute: TextEmphasis underlined from: 1 to: aString size.
-
 ]
 
 { #category : #formatting }

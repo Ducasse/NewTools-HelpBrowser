@@ -1,5 +1,5 @@
 "
-I'm an HelpSystem builder which create an HelpSystem book from a microdown formatted string. 
+I'm an HelpSystem builder which creates an HelpSystem book from a microdown formatted string. 
 
 # Usage
 
@@ -22,7 +22,7 @@ MicrodownStyleHelpBuilder class >> allHelpPragmas [
 { #category : #help }
 MicrodownStyleHelpBuilder class >> help [
 	<microdownStyleHelp: #'Write documentation with Microdown'>
-	^ 'From  comment: ', String cr, self comment
+	^ self comment
 ]
 
 { #category : #'private accessing' }
@@ -59,20 +59,6 @@ MicrodownStyleHelpBuilder >> defaultSyntax [
 
 { #category : #'private extraction' }
 MicrodownStyleHelpBuilder >> extractHelpContentFromString: aString [
-	| start stop |
-	start := aString findString: self helpStartMarker.
-	start := start = 0
-		ifTrue: [ 1 ]
-		ifFalse: [ start + self helpStartMarker size ].
-	stop := aString findString: self helpStopMarker startingAt: start.
-	stop := stop = 0
-		ifTrue: [ aString size ]
-		ifFalse: [ stop - 1 ].
-	^ (aString copyFrom: start to: stop) trimBoth
-]
-
-{ #category : #'private accessing' }
-MicrodownStyleHelpBuilder >> helpContentFromString: aString [
 	| start stop |
 	start := aString findString: self helpStartMarker.
 	start := start = 0

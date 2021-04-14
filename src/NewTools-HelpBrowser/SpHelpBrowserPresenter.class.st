@@ -96,6 +96,7 @@ SpHelpBrowserPresenter >> initializePresenters [
 		roots: { self helpTopic };
 		children: [ :aNode | aNode subtopics ];
 		display: [ :each | each title ].
+	loadedTopicList expandAll.
 	
 	"Using a morph container as the output because a text presenter is intended to receive 
 	 strings, not instances of Text (the fact that it works now is just casual, and will 
