@@ -1,12 +1,12 @@
 Class {
 	#name : #MicrodownisedHelp,
 	#superclass : #Object,
-	#category : #'NewTools-HelpBrowser-Utilities'
+	#category : #'NewTools-HelpBrowser-tomoveBackInHelp'
 }
 
 { #category : #conversion }
 MicrodownisedHelp class >> asHelpTopic [ 
-	<systemHelp>
+	<newSystemHelp>
 	
-	^MicrodownStyleHelpBuilder new build topicToBuild
+	^ MicrodownStyleHelpBuilder new build topicToBuild
 ]

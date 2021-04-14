@@ -40,7 +40,7 @@ MicrodownStyleHelpBuilder class >> pragmaKeywords [
 { #category : #building }
 MicrodownStyleHelpBuilder >> build [
 	| text extract topic |
-	topicToBuild title: 'Wiki style help' translated.
+	topicToBuild title: 'Midrodown style help' translated.
 	self class allHelpPragmas
 		do: [ :each | 
 			"Its assumed that if the pragma is a single keyword only the title is given
@@ -54,7 +54,7 @@ MicrodownStyleHelpBuilder >> build [
 
 { #category : #'private accessing' }
 MicrodownStyleHelpBuilder >> defaultSyntax [
-	^#pier
+	^#microdown
 ]
 
 { #category : #'private extraction' }
@@ -150,5 +150,5 @@ MicrodownStyleHelpBuilder >> sectionStartChar [
 
 { #category : #'private accessing' }
 MicrodownStyleHelpBuilder >> supportedSyntaxes [
-	^#(pier) 
+	^#(microdown) 
 ]
