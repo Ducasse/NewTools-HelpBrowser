@@ -31,11 +31,12 @@ SystemHelp2 class >> asHelpTopic [
 		topic subtopics addAll: each method methodClass instanceSide asHelpTopic subtopics
 	].
 	topic sortSubtopicsByTitle.
-	helpOnHelp := topic subtopics detect: [:t | t key = 'HelpOnHelp'] ifNone: [self error: 'Help for the help system is removed'].
-	sortedTopics := topic subtopics.
-	sortedTopics remove: helpOnHelp.
-	sortedTopics addLast: helpOnHelp.
-	topic subtopics: sortedTopics.
+	helpOnHelp := topic subtopics detect: [:t | t key = 'HelpOnHelp'] ifNone: [nil].
+	helpOnHelp ifNotNil: [  
+		sortedTopics := topic subtopics.
+		sortedTopics remove: helpOnHelp.
+		sortedTopics addLast: helpOnHelp.
+		topic subtopics: sortedTopics].
 	^topic
 ]
 

@@ -35,6 +35,7 @@ SpHelpBrowserPresenter class >> defaultSpec [
 
 	 ^ SpBoxLayout newTopToBottom
 			add: (SpPanedLayout newLeftToRight
+				position: 20 percent;
 				add: #loadedTopicList;
 				add: #textOutput;
 				yourself);
@@ -45,7 +46,7 @@ SpHelpBrowserPresenter class >> defaultSpec [
 SpHelpBrowserPresenter class >> open [
 	<example>
 	
-	^ self openOn: SystemHelp
+	^ self openOn: SystemHelp2
 ]
 
 { #category : #examples }
@@ -84,7 +85,7 @@ SpHelpBrowserPresenter >> helpTopic [
 
 { #category : #initialization }
 SpHelpBrowserPresenter >> initialExtent [
-	^ 800@600
+	^ 1000@600
 ]
 
 { #category : #initialization }
