@@ -1,7 +1,7 @@
 Class {
 	#name : #MicrodownisedHelp,
 	#superclass : #Object,
-	#category : #'NewTools-HelpBrowser-tomoveBackInHelp'
+	#category : #'NewTools-HelpBrowser-TobeMovedIntoHelp'
 }
 
 { #category : #conversion }

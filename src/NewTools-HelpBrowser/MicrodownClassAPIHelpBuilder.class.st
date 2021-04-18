@@ -16,7 +16,7 @@ Class {
 		'subclassesAsSeparateTopic',
 		'addMethodsWithoutComment'
 	],
-	#category : #'NewTools-HelpBrowser-Builders'
+	#category : #'NewTools-HelpBrowser-TobeMovedIntoHelp'
 }
 
 { #category : #building }
