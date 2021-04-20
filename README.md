@@ -1,2 +1,2 @@
 # NewTools-HelpBrowser
-![https://github.com/pharo-containers/Containers-Array2D/workflows/currentStablePharo/badge.svg](https://github.com/pharo-containers/Containers-Array2D/workflows/currentStablePharo/badge.svg)
+![https://github.com/Ducasse/NewTools-HelpBrowser/workflows/currentStablePharo/badge.svg](https://github.com/Ducasse/NewTools-HelpBrowser//workflows/currentStablePharo/badge.svg)
