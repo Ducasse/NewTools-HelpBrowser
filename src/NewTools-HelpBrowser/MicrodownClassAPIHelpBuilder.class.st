@@ -128,8 +128,8 @@ MicrodownClassAPIHelpBuilder >> showMethods [
 ]
 
 { #category : #accessing }
-MicrodownClassAPIHelpBuilder >> showMethods: anObject [
-	showMethods := anObject
+MicrodownClassAPIHelpBuilder >> showMethods: aBoolean [
+	showMethods := aBoolean
 ]
 
 { #category : #accessing }
@@ -138,8 +138,8 @@ MicrodownClassAPIHelpBuilder >> showMethodsWithoutComment [
 ]
 
 { #category : #accessing }
-MicrodownClassAPIHelpBuilder >> showMethodsWithoutComment: anObject [
-	showMethodsWithoutComment := anObject
+MicrodownClassAPIHelpBuilder >> showMethodsWithoutComment: aBoolean [
+	showMethodsWithoutComment := aBoolean
 ]
 
 { #category : #accessing }
@@ -148,8 +148,8 @@ MicrodownClassAPIHelpBuilder >> showSubclasses [
 ]
 
 { #category : #accessing }
-MicrodownClassAPIHelpBuilder >> showSubclasses: anObject [
-	showSubclasses := anObject
+MicrodownClassAPIHelpBuilder >> showSubclasses: aBoolean [
+	showSubclasses := aBoolean
 ]
 
 { #category : #accessing }
@@ -158,6 +158,6 @@ MicrodownClassAPIHelpBuilder >> showSubclassesAsSeparateTopic [
 ]
 
 { #category : #accessing }
-MicrodownClassAPIHelpBuilder >> showSubclassesAsSeparateTopic: anObject [
-	showSubclassesAsSeparateTopic := anObject
+MicrodownClassAPIHelpBuilder >> showSubclassesAsSeparateTopic: aBoolean [
+	showSubclassesAsSeparateTopic := aBoolean
 ]
