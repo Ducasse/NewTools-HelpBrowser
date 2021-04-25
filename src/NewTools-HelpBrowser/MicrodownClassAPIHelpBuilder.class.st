@@ -11,10 +11,10 @@ Class {
 	#name : #MicrodownClassAPIHelpBuilder,
 	#superclass : #HelpBuilder,
 	#instVars : [
-		'addSubclasses',
-		'addMethods',
-		'subclassesAsSeparateTopic',
-		'addMethodsWithoutComment'
+		'showMethods',
+		'showMethodsWithoutComment',
+		'showSubclasses',
+		'showSubclassesAsSeparateTopic'
 	],
 	#category : #'NewTools-HelpBrowser-TobeMovedIntoHelp'
 }
@@ -24,41 +24,11 @@ MicrodownClassAPIHelpBuilder class >> buildHierarchicalHelpTopicFrom: aClass wit
 	"Start building from the given class"
 	
 	^ self new
-			addSubclasses: aBoolean; 
-			addMethods: anotherBoolean;
+			showSubclasses: aBoolean; 
+			showMethods: anotherBoolean;
 			rootToBuildFrom: aClass;
 			build;
 			topicToBuild 
-]
-
-{ #category : #accessing }
-MicrodownClassAPIHelpBuilder >> addMethods [
-	^ addMethods
-]
-
-{ #category : #accessing }
-MicrodownClassAPIHelpBuilder >> addMethods: anObject [
-	addMethods := anObject
-]
-
-{ #category : #accessing }
-MicrodownClassAPIHelpBuilder >> addMethodsWithoutComment [
-	^ addMethodsWithoutComment
-]
-
-{ #category : #accessing }
-MicrodownClassAPIHelpBuilder >> addMethodsWithoutComment: anObject [
-	addMethodsWithoutComment := anObject
-]
-
-{ #category : #accessing }
-MicrodownClassAPIHelpBuilder >> addSubclasses [
-	^ addSubclasses
-]
-
-{ #category : #accessing }
-MicrodownClassAPIHelpBuilder >> addSubclasses: anObject [
-	addSubclasses := anObject
 ]
 
 { #category : #building }
@@ -70,9 +40,9 @@ MicrodownClassAPIHelpBuilder >> build [
 	rootToBuildFrom buildMicroDownUsing: builder withComment: rootToBuildFrom comment.
 	topicToBuild contents: builder contents.
 		
-	addMethods
+	showMethods
 		ifTrue: [ self buildSubnodesForMethods ].
-	addSubclasses
+	showSubclasses
 		ifTrue: [ self buildSubnodesForSubclasses ]
 ]
 
@@ -83,7 +53,7 @@ MicrodownClassAPIHelpBuilder >> buildMethodTopicsOn: topic for: aClass [
 	stream := String new writeStream.
 	aClass selectors asSortedCollection do: [:selector | 
 		methodComment := (aClass>>selector) comment.
-		addMethodsWithoutComment | methodComment notNil ifTrue: [ 
+		showMethodsWithoutComment | methodComment notNil ifTrue: [ 
 			stream 
 				nextPutAll: '`';
 				nextPutAll: aClass name;
@@ -105,9 +75,9 @@ MicrodownClassAPIHelpBuilder >> buildSubclassTopicFor: aSubclass [
 	 
 	^ self class new 
 			rootToBuildFrom: aSubclass;
-			addSubclasses: addSubclasses;
-			addMethods: addMethods;
-			subclassesAsSeparateTopic: subclassesAsSeparateTopic;
+			showSubclasses: showSubclasses;
+			showMethods: showMethods;
+			showSubclassesAsSeparateTopic: showSubclassesAsSeparateTopic;
 			build;
 			topicToBuild 
 	 
@@ -132,7 +102,7 @@ MicrodownClassAPIHelpBuilder >> buildSubnodesForSubclasses [
 	rootToBuildFrom subclasses isEmpty
 		ifTrue: [ ^ self ].
 	topicToBuild iconName: #bookIcon.
-	topic := subclassesAsSeparateTopic
+	topic := showSubclassesAsSeparateTopic
 		ifTrue: [ topicToBuild addSubtopic: (HelpTopic named: 'Subclasses') ]
 		ifFalse: [ topicToBuild ].
 	rootToBuildFrom subclasses
@@ -146,18 +116,48 @@ MicrodownClassAPIHelpBuilder >> initialize [
 	"Initializes the receiver"
 	
 	super initialize.
-	addSubclasses := false.
-	addMethods := true.
-	subclassesAsSeparateTopic := true.
-	addMethodsWithoutComment := true.
+	showSubclasses := false.
+	showMethods := true.
+	showSubclassesAsSeparateTopic := true.
+	showMethodsWithoutComment := true.
 ]
 
 { #category : #accessing }
-MicrodownClassAPIHelpBuilder >> subclassesAsSeparateTopic [
-	^ subclassesAsSeparateTopic
+MicrodownClassAPIHelpBuilder >> showMethods [
+	^ showMethods
 ]
 
 { #category : #accessing }
-MicrodownClassAPIHelpBuilder >> subclassesAsSeparateTopic: anObject [
-	subclassesAsSeparateTopic := anObject
+MicrodownClassAPIHelpBuilder >> showMethods: anObject [
+	showMethods := anObject
+]
+
+{ #category : #accessing }
+MicrodownClassAPIHelpBuilder >> showMethodsWithoutComment [
+	^ showMethodsWithoutComment
+]
+
+{ #category : #accessing }
+MicrodownClassAPIHelpBuilder >> showMethodsWithoutComment: anObject [
+	showMethodsWithoutComment := anObject
+]
+
+{ #category : #accessing }
+MicrodownClassAPIHelpBuilder >> showSubclasses [
+	^ showSubclasses
+]
+
+{ #category : #accessing }
+MicrodownClassAPIHelpBuilder >> showSubclasses: anObject [
+	showSubclasses := anObject
+]
+
+{ #category : #accessing }
+MicrodownClassAPIHelpBuilder >> showSubclassesAsSeparateTopic [
+	^ showSubclassesAsSeparateTopic
+]
+
+{ #category : #accessing }
+MicrodownClassAPIHelpBuilder >> showSubclassesAsSeparateTopic: anObject [
+	showSubclassesAsSeparateTopic := anObject
 ]
